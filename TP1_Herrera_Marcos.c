@@ -25,6 +25,7 @@ Node createNewList(Node L_header);
 Node createTestList(Node L_Header);
 Node addInTail(Node L_Header, item value);
 Node deleteTheTail(Node L_Header);
+Node controlarPositivos(Node L_Header); // Quiz (checkPositive)
 
 int main()
 {
@@ -58,6 +59,17 @@ int main()
     // Mostrar ambas listas creadas
     printf("\n*** Elementos de la primera lista ***\n");
     showList(L_Header_1);
+
+    // QUIZTP1: Controlo si todos los elementos de la lista '1' son positivos
+    if (controlarPositivos(L_Header_1))
+    {
+        printf("\nTodos los elementos de la lista 'L_Header_1' son positivos");
+    }
+    else
+    {
+        printf("\nLa lista dada no contiene elementos positivos o no todos los elementos de la lista son positivos");
+    }
+
     printf("\n*** Elementos de la segunda lista ***\n");
     showList(L_Header_2);
 
@@ -301,4 +313,24 @@ Node deleteTheTail(Node L_Header)
         }
     }
     return L_Header;
+}
+
+Node controlarPositivos(Node L_Header)
+{
+    Node aux_pointer;
+    if (L_Header == NULL)
+    {
+        return 0;
+    }
+    else
+    {
+        for (aux_pointer = L_Header; aux_pointer != NULL; aux_pointer = aux_pointer->next)
+        {
+            if (aux_pointer->number < 0)
+            {
+                return 0;
+            }
+        }
+        return 1;
+    }
 }
