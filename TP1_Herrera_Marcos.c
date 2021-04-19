@@ -23,6 +23,8 @@ int equalLists(Node L_Header, Node L_Header_2); // punto 3
 void equalLists_ExtendedVersion(Node L_Header, Node L_header_2);
 Node createNewList(Node L_header);
 Node createTestList(Node L_Header);
+Node addInTail(Node L_Header, item value);
+Node deleteTheTail(Node L_Header);
 
 int main()
 {
@@ -258,4 +260,45 @@ void belongToTheList_ExtendedVersion(Node L_Header, int value)
     {
         printf("\nNo pertenece a la lista");
     }
+}
+
+Node addInTail(Node L_Header, item value)
+{
+    // Funcion para agregar un elemento por la cola o final de la lista enlazada
+    Node aux_pointer, new_Node;
+    new_Node = (Node)malloc(sizeof(Node));
+    new_Node->number = value;
+    new_Node->next = NULL;
+    if (L_Header == NULL)
+    {
+        L_Header = new_Node;
+    }
+    else
+    {
+        for (aux_pointer = L_Header; aux_pointer->next != NULL; aux_pointer = aux_pointer->next)
+            ;
+        aux_pointer->next = new_Node;
+    }
+    return L_Header;
+}
+
+Node deleteTheTail(Node L_Header)
+{
+    // Funcion para eliminar el ultimo elemento de la lista o la cola de la lista enlazada
+    Node aux_pointer, behind;
+    if (L_Header != NULL)
+    {
+        for (behind = NULL, aux_pointer = L_Header; aux_pointer != NULL; behind = aux_pointer, aux_pointer = aux_pointer->next)
+            ;
+        free(aux_pointer);
+        if (behind == NULL)
+        {
+            L_Header = NULL;
+        }
+        else
+        {
+            behind->next = NULL;
+        }
+    }
+    return L_Header;
 }
